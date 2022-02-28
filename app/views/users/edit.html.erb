@@ -1,0 +1,16 @@
+<% if @user.errors.any? %>
+ <%= @user.errors.count %>errors prohibited this obj from being saved:
+ <% @user.errors.full_messages.each do |massage| %>
+ <li><%= massage %></li>
+ <% end %>
+<% end %>
+<h1>User info</h1>
+<%= form_with model: @user do |f| %>
+ <label for="Name">name</label><br>
+ <%= f.text_field :name, id:"Name" %><br>
+ <label>Image</label><br>
+ <%= f.file_field :profile_image, accept:"image/*" %><br>
+ <label for="Introduction">introduction</label><br>
+ <%= f.text_area :introduction, id:"Introduction" %><br>
+ <%= f.submit"Update User" %>
+<% end %>

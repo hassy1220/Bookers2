@@ -1,0 +1,14 @@
+<% if @book.errors.any? %>
+ <%= @book.errors.count %>errors prohibited this obj from being saved:
+ <% @book.errors.full_messages.each do |massage| %>
+ <li><%= massage %></li>
+ <% end %>
+<% end %>
+<h1>Editing Book</h1>
+<%= form_with model: @book do |f| %>
+ <label for="Title">Title</label><br>
+ <%= f.text_field :title, id:"Title" %><br>
+ <label for="Opinion">Opinion"</label><br>
+ <%= f.text_area :body, id:"Opinion" %><br>
+ <%= f.submit"Update Book" %>
+<% end %>
