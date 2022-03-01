@@ -1,3 +1,5 @@
+<div class="container w-25">
+<div class="text-center">
 <% if @book.errors.any? %>
  <%= @book.errors.count %>errors prohibited this obj from being saved:
  <% @book.errors.full_messages.each do |massage| %>
@@ -7,8 +9,12 @@
 <h1>Editing Book</h1>
 <%= form_with model: @book do |f| %>
  <label for="Title">Title</label><br>
- <%= f.text_field :title, id:"Title" %><br>
+ <%= f.text_field :title, id:"Title",class:"form-control text-center" %><br>
  <label for="Opinion">Opinion"</label><br>
- <%= f.text_area :body, id:"Opinion" %><br>
+ <%= f.text_area :body, id:"Opinion",class:"form-control" %><br>
  <%= f.submit"Update Book" %>
 <% end %>
+<%= link_to"Show",book_path(@book) %>|
+<%= link_to"Back",books_path %>
+</div>
+</div>
