@@ -1,7 +1,6 @@
 <div class="container">
  <div class="row">
-  <div class="col-3 mr-5">
-  
+  <div class="col-sm-3 col-md-3">
    <%= flash[:update] %>
    <h1>User info</h1>
    <p class="border-bottom"><%= image_tag @book.user.get_profile_image(100,100) %></p>
@@ -14,28 +13,28 @@
    <h1>New book</h1>
    <%= form_with model: @books, url: books_path, method: :post do |f| %>
     <label for = "Name" >Title</label><br>
-    <%= f.text_field :title, id:"Name" %><br>
+    <%= f.text_field :title, id:"Name",class: 'form-control' %><br>
     <label for = "Opinion" >Opinion</label><br>
-    <%= f.text_area :body, id:"Opinion" %><br>
+    <%= f.text_area :body, id:"Opinion",class: 'form-control' %><br>
     <%= f.submit"Create Book" %>
    <% end %>
   </div>
-
-  <div class="col-8">
+  
+  <div class="col-sm-8 col-md-8 offset-md-1 ">
    <h1>Book detail</h1>
-   <table class="table">
+   <table class="table table-hover">
    <tr class="border-bottom">
-     <th>
-       <p><%= image_tag @book.user.get_profile_image(50,100) %></p>
+     <th style="width:30%">
        <%= link_to user_path(@book.user) do %>
-       <%= @book.user.name %>
+        <p><%= image_tag @book.user.get_profile_image(50,100) %></p>
+        <%= @book.user.name %>
        <% end %>
      </th>
-     <th><%= @book.title %></th>
-     <th><%= @book.body %></th>
+     <th style="width:35%"><%= @book.title %></th>
+     <th style="width:35%"><%= @book.body %></th>
      <%if @book.user_id == current_user.id %>
-       <th><%= link_to"Edit",edit_book_path(@book.id) %></th>
-       <th><%= link_to"Destroy",book_path,method: :delete %></th>
+       <th><%= link_to"Edit",edit_book_path(@book.id),class: 'btn btn-success' %></th>
+       <th><%= link_to"Destroy",book_path,method: :delete,class: 'btn btn-danger' %></th>
      <% end %>
    </tr>
    </table>

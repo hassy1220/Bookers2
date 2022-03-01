@@ -1,29 +1,29 @@
 <div class="container">
  <div class="row">
-  <div class="col-md-4">
+  <div class="col-sm-3 col-md-3 ">
    <h1>User info</h1>
    <p class="border-bottom"><%= image_tag @user.get_profile_image(100,100) %></p>
    <p class="border-bottom">name <%= @user.name %></p>
    <p>introduction <%= @user.introduction %></p>
    <p><%= link_to"プロフィール編集",edit_user_path(@user.id) %></p>
- 
+
    <h1>New book</h1>
    <%= form_with model: @book, url: books_path,method: :post do |f| %>
     <label for = "Name" >Title</label><br>
-    <%= f.text_field :title, id:"Name" %><br>
+    <%= f.text_field :title, id:"Name",class:'form-control' %><br>
     <label for = "Opinion" >Opinion</label><br>
-    <%= f.text_area :body, id:"Opinion" %><br>
+    <%= f.text_area :body, id:"Opinion",class:'form-control' %><br>
     <%= f.submit"Create Book" %>
    <% end %>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-sm-8 col-md-8  offset-md-1 ">
    <h1>Users</h1>
    <table class="table">
     <tr class="border-bottom">
-      <th>image</th>
-      <th>name</th>
-      <th></th>
+      <th style="width:30%">image</th>
+      <th style="width:35%">name</th>
+      <th style="width:35%"></th>
     </tr>
     <% @users.each do |user| %>
     <tr>
@@ -39,5 +39,6 @@
   </div>
  </div>
 </div>
+<p class="text-center">CopyRight Infratop.inc</p>
 
 
