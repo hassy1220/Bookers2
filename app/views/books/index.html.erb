@@ -11,8 +11,12 @@
    <p class="border-bottom"><%= image_tag @user.get_profile_image(100,100) %></p>
    <p class="border-bottom">name <%= @user.name %></p>
    <p>introduction <%= @user.introduction %></p>
-   <p><%= link_to"プロフィール編集",edit_user_path(@user.id) %></p>
-
+   
+   <!--他人のユーザーが自分のプロフィールの編集ボタンを押してもBookコントローラにeditを禁止する記述をしてるから防ゲル-->
+    <%= link_to edit_user_path(@user.id) do %>
+       <p class="text-center border rounded-pill"><i class="fas fa-user-cog"></i></p>
+    <% end %>
+    
    <h1>New book</h1>
    <%= form_with model: @book do |f| %>
     <label for = "Name" >Title</label><br>
@@ -22,31 +26,39 @@
     <%= f.submit"Create Book" %>
    <% end %>
   </div>
- 
+
   <div class="col-sm-8 col-md-8 offset-md-1  ">
    <h1>Books</h1>
    <table class="table table-hover">
     <tr class="border-bottom">
-     <th style="width:10%"></th>
-     <th style="width:40%">Title</th>
-     <th style="width:50%">Opinion</th>
+     <th style="width:10%">
+      
+     </th>
+     <th style="width:40%">
+       Title
+     </th>
+     <th style="width:50%">
+       Opinion
+     </th>
     </tr>
     <% @books.each do |book| %>
     <tr>
-    <th>
-     <%= link_to user_path(book.user_id) do %>
-       <%= image_tag book.user.get_profile_image(50,50) %>
-     <% end %>
-    </th>
-    <th>
-     <%= link_to book_path(book) do %>
-      <%= book.title %>
-     <% end %>
-    </th>
-    <th><%= book.body %></th>
-   <% end %>
-   </tr>
-  </table>
+     <td>
+       <%= link_to user_path(book.user_id) do %>
+          <%= image_tag book.user.get_profile_image(50,50) %>
+       <% end %>
+     </td>
+     <td>
+       <%= link_to book_path(book) do %>
+        <%= book.title %>
+       <% end %>
+     </td>
+     <td>
+       <%= book.body %>
+     </td>
+    <% end %>
+    </tr>
+   </table>
   </div>
  </div>
 </div>

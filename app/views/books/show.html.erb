@@ -6,8 +6,9 @@
    <p class="border-bottom"><%= image_tag @book.user.get_profile_image(100,100) %></p>
    <p class="border-bottom">name <%= @book.user.name %></p>
    <p>introduction <%= @book.user.introduction %></p>
-   <% if @book.user == current_user %>
-    <p><%= link_to"プロフィール編集",edit_user_path(@book.user.id) %></p>
+   
+   <%= link_to edit_user_path(@book.user.id) do %>
+       <p class="text-center border rounded-pill"><i class="fas fa-user-cog"></i></p>
    <% end %>
 
    <h1>New book</h1>
@@ -23,18 +24,22 @@
   <div class="col-sm-8 col-md-8 offset-md-1 ">
    <h1>Book detail</h1>
    <table class="table table-hover">
-   <tr class="border-bottom">
-     <th style="width:30%">
-       <%= link_to user_path(@book.user) do %>
-        <p><%= image_tag @book.user.get_profile_image(50,100) %></p>
-        <%= @book.user.name %>
-       <% end %>
-     </th>
-     <th style="width:35%"><%= @book.title %></th>
-     <th style="width:35%"><%= @book.body %></th>
-     <%if @book.user_id == current_user.id %>
-       <th><%= link_to"Edit",edit_book_path(@book.id),class: 'btn btn-success' %></th>
-       <th><%= link_to"Destroy",book_path,method: :delete,class: 'btn btn-danger' %></th>
+     <tr class="border-bottom">
+       <td style="width:30%">
+         <%= link_to user_path(@book.user) do %>
+           <p><%= image_tag @book.user.get_profile_image(50,100) %></p>
+           <%= @book.user.name %>
+         <% end %>
+       </td>
+       <td style="width:35%">
+         <%= @book.title %>
+       </td>
+       <td style="width:35%">
+         <%= @book.body %>
+       </td>
+       <%if @book.user_id == current_user.id %>
+       <td><%= link_to"Edit",edit_book_path(@book.id),class: 'btn btn-success' %></td>
+       <td><%= link_to"Destroy",book_path,method: :delete,class: 'btn btn-danger' %></td>
      <% end %>
    </tr>
    </table>

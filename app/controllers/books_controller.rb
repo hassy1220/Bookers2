@@ -14,7 +14,6 @@ class BooksController < ApplicationController
        flash[:create]="You have created book successfully."
         redirect_to book_path(@book)
     else
-         # @book = Book.new
        @books = Book.all
        @user = current_user
        render:index
@@ -55,10 +54,7 @@ class BooksController < ApplicationController
   end
   
   private
-  # def book_params
-  #   # userコントローラのshowより新規投稿する際、require(:book)が邪魔になるから除去した
-  #   params.permit(:title,:body)
-  # end
+  
   def books_params
     params.require(:book).permit(:title,:body)
   end

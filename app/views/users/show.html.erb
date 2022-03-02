@@ -7,10 +7,11 @@
     <p class="border-bottom"><%= image_tag @user.get_profile_image(100,100) %></p>
     <p class="border-bottom pb-3">name <%= @user.name %></p>
     <p>introduction <%= @user.introduction %></p>
-    <% if @user == current_user %>
-     <p><%= link_to"プロフィール編集",edit_user_path(@user.id) %></p>
-    <% end %>
-
+    
+     <%= link_to edit_user_path(@user.id) do %>
+       <p class="text-center border rounded-pill"><i class="fas fa-user-cog"></i></p>
+     <% end %>
+    
     <h1>New book</h1>
     <%= form_with model: @book, url: books_path,method: :post do |f| %>
      <label for = "Name" >Title</label><br>
@@ -31,11 +32,11 @@
     </tr>
     <% @user.books.each do |book| %>
     <tr>
-     <th>
+     <td>
        <%= link_to user_path(book.user_id) do %>
          <%= image_tag book.user.get_profile_image(50,50) %>
        <% end %>
-      </th>
+      </td>
      <td>
        <%= link_to book_path(book.id) do %>
        <%= book.title %>
